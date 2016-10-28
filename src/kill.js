@@ -20,7 +20,8 @@ export default async function kill(child: ChildProcess, signal?: string = 'SIGTE
         children.forEach(child => process.kill(parseInt(child.PID), signal))
         break
       } catch (error) {
-        // keep looping
+        // sleep, then keep looping
+        await new Promise(resolve => setTimeout(resolve, 500))
       }
     }
   }
