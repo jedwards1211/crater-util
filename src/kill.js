@@ -6,7 +6,7 @@ import createDebug from 'debug'
 
 const debug = createDebug('crater-util:kill')
 const psDebug = createDebug('crater-util:kill:ps')
-const runPs = process.env.DEBUG.split(/\s*,\s*/).indexOf('crater-util:kill:ps') >= 0
+const runPs = process.env.DEBUG && process.env.DEBUG.split(/\s*,\s*/).indexOf('crater-util:kill:ps') >= 0
 
 export default async function kill(child: ChildProcess, signal?: string = 'SIGTERM'): Promise<void> {
   if (runPs) psDebug('\n' + (await execAsync('ps -o pid,ppid,command | sort', {silent: true})).stdout)
