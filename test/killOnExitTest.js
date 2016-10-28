@@ -5,7 +5,7 @@ import {expect} from 'chai'
 describe('killOnExit', () => {
   it('kills child when parent process exits', async function () {
     this.timeout(20000)
-    const proc = spawn(process.argv[0], [require.resolve('./util/killOnExitParent')], {silent: true})
+    const proc = spawn('babel-node', [require.resolve('./util/killOnExitParent')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
     const childOutput = await childPrinted(proc, /child pid: \d+/)
@@ -17,7 +17,7 @@ describe('killOnExit', () => {
   })
   it('kills child when parent process is killed with SIGINT', async function () {
     this.timeout(20000)
-    const proc = spawn(process.argv[0], [require.resolve('./util/killOnExitParent')], {silent: true})
+    const proc = spawn('babel-node', [require.resolve('./util/killOnExitParent')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
     const childOutput = await childPrinted(proc, /child pid: \d+/)
@@ -28,7 +28,7 @@ describe('killOnExit', () => {
   })
   it('kills child when parent process is killed with SIGTERM', async function () {
     this.timeout(20000)
-    const proc = spawn(process.argv[0], [require.resolve('./util/killOnExitParent')], {silent: true})
+    const proc = spawn('babel-node', [require.resolve('./util/killOnExitParent')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
     const childOutput = await childPrinted(proc, /child pid: \d+/)
@@ -39,7 +39,7 @@ describe('killOnExit', () => {
   })
   it('works when child process exits by itself', async function () {
     this.timeout(20000)
-    const proc = spawn(process.argv[0], [require.resolve('./util/killOnExitParent2')], {silent: true})
+    const proc = spawn('babel-node', [require.resolve('./util/killOnExitParent2')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
     const childOutput = await childPrinted(proc, /child pid: \d+/)
