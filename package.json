@@ -1,6 +1,6 @@
 {
   "name": "crater-util",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "my personal skeleton for ES2015 library NPM packages",
   "main": "lib/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "gen-flow-files": "flow gen-flow-files src/ --out-dir lib",
     "build": "rimraf lib && babel src --out-dir lib",
     "test": "mocha $npm_package_config_mocha",
-    "coverage": "NODE_ENV=coverage nyc --reporter=lcov --reporter=text mocha $npm_package_config_mocha --include src/*.js",
+    "coverage": "DEBUG=crater-util:kill,crater-util:kill:ps NODE_ENV=coverage nyc --reporter=lcov --reporter=text mocha $npm_package_config_mocha --include src/*.js",
     "prepublish": "npm run lint && flow && npm run coverage && npm run build",
     "postpublish": "git tag -a v$npm_package_version -m v$npm_package_version && git push origin v$npm_package_version"
   },
