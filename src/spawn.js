@@ -7,7 +7,10 @@ import type {ChildProcess} from 'child_process'
 
 export default function spawn(command: string, args?: Array<string> = [], options?: Object = {}): ChildProcess {
   const {silent, ...otherOptions} = options
-  const child = _spawn(command, args, otherOptions)
+  const child = _spawn(command, args, {
+    stdio: silent ? 'pipe' : 'inherit',
+    ...otherOptions,
+  })
   if (child.stdin) process.stdin.pipe(child.stdin)
   if (!silent) {
     if (child.stdout) child.stdout.pipe(process.stdout)
