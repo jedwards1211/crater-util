@@ -5,7 +5,7 @@ import {expect} from 'chai'
 
 describe('kill', () => {
   it('kills a tree of processes', async function () {
-    this.timeout(5000)
+    this.timeout(10000)
     const proc = spawn(process.argv[0], [require.resolve('./util/killParent')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
