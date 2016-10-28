@@ -1,6 +1,6 @@
 {
   "name": "crater-util",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "my personal skeleton for ES2015 library NPM packages",
   "main": "lib/index.js",
   "scripts": {

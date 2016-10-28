@@ -5,7 +5,7 @@ import {expect} from 'chai'
 
 describe('kill', () => {
   it('kills a tree of processes', async function () {
-    this.timeout(30000)
+    this.timeout(60000)
     const proc = spawn(process.argv[0], [require.resolve('./util/killParent')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
@@ -17,7 +17,7 @@ describe('kill', () => {
     expect(() => process.kill(childPid, 0)).to.throw
   })
   it('works when child exits early', async function () {
-    this.timeout(30000)
+    this.timeout(60000)
     const proc = spawn(process.argv[0], [require.resolve('./util/killParent2')], {silent: true})
     const parentOutput = await childPrinted(proc, /parent pid: \d+/)
     const parentPid = parentOutput.substring("parent pid: ".length)
@@ -31,7 +31,7 @@ describe('kill', () => {
     expect(() => process.kill(childPid, 0)).to.throw
   })
   it('rejects when killing a nonexistent process', async function () {
-    this.timeout(30000)
+    this.timeout(60000)
     let pid = 9000
     function pidExists() {
       try {

@@ -5,10 +5,11 @@ import promisify from 'es6-promisify'
 import createDebug from 'debug'
 
 const debug = createDebug('crater-util:kill')
+const psDebug = createDebug('crater-util:kill:ps')
 const runPs = process.env.DEBUG.split(/\s*,\s*/).indexOf('crater-util:kill:ps') >= 0
 
 export default async function kill(child: ChildProcess, signal?: string = 'SIGTERM'): Promise<void> {
-  if (runPs) debug('\n' + (await execAsync('ps -o pid,ppid,command | sort')).stdout)
+  if (runPs) psDebug('\n' + (await execAsync('ps -o pid,ppid,command | sort', {silent: true})).stdout)
 
   debug(`kill(${child.pid}, ${signal}):`)
   const children = await promisify(psTree)(child.pid)
@@ -49,6 +50,6 @@ export default async function kill(child: ChildProcess, signal?: string = 'SIGTE
   while (anyAlive()) await new Promise(resolve => setTimeout(resolve, 500))
   debug('  done')
 
-  if (runPs) debug('\n' + (await execAsync('ps -o pid,ppid,command | sort')).stdout)
+  if (runPs) psDebug('\n' + (await execAsync('ps -o pid,ppid,command | sort', {silent: true})).stdout)
 }
 
