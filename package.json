@@ -1,7 +1,7 @@
 {
   "name": "crater-util",
-  "version": "1.2.0",
-  "description": "a collection of utilities used by the build scripts in [crater](https://github.com/jcoreio/crater",
+  "version": "1.2.1",
+  "description": "a collection of utilities used by the build scripts in [crater](https://github.com/jcoreio/crater)",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src test",

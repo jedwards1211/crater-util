@@ -9,9 +9,8 @@ async function dockerComposePort(service: string, privatePort: string | number, 
     silent: true,
     ...options,
     env: {
-      ...process.env,
-      ...options.env || {},
       ...await dockerEnv(),
+      ...options.env || {},
     }
   })).stdout.trim()
   return host.replace(/^[^:]+/, await getDockerIP())
