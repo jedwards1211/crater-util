@@ -6,7 +6,7 @@ import dockerComposePort from '../src/dockerComposePort'
 describe('dockerComposePort', () => {
   let options
   before(async function () {
-    this.timeout = 10000
+    this.timeout(60000)
     options = {
       cwd: __dirname,
       env: {
@@ -22,7 +22,7 @@ describe('dockerComposePort', () => {
   })
 
   after(async function () {
-    this.timeout = 10000
+    this.timeout(60000)
     await execAsync('docker-compose down', options)
   })
 })
