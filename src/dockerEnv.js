@@ -4,10 +4,14 @@ import {parse} from 'dotenv'
 import execAsync from './execAsync'
 
 async function dockerEnv(): Promise<Object> {
+  if (process.env.DOCKER_HOST) return process.env
   try {
-    return parse((await execAsync('docker-machine env', {silent: true})).stdout.replace(/^#.*$|^export /mg, ''))
+    return {
+      ...process.env,
+      ...parse((await execAsync('docker-machine env', {silent: true})).stdout.replace(/^#.*$|^export /mg, '')),
+    }
   } catch (error) {
-    return {}
+    return process.env
   }
 }
 

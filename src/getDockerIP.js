@@ -8,10 +8,7 @@ async function getDockerIP(): Promise<string> {
     await execAsync('which docker-machine', {silent: true})
     return (await execAsync('docker-machine ip', {
       silent: true,
-      env: {
-        ...process.env,
-        ...await dockerEnv(),
-      }
+      env: await dockerEnv(),
     })).stdout.trim()
   } catch (error) {
     return 'localhost'
