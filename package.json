@@ -73,7 +73,7 @@
     "async-child-process": "^1.1.1",
     "cross-spawn": "^5.0.1",
     "debug": "^2.2.0",
-    "dotenv": "^2.0.0",
+    "dotenv": "^4.0.0",
     "es6-promisify": "^5.0.0",
     "ps-tree": "^1.1.0"
   },
