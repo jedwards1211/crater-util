@@ -45,7 +45,7 @@
   "homepage": "https://github.com/jedwards1211/crater-util#readme",
   "devDependencies": {
     "babel-cli": "^6.16.0",
-    "babel-core": "^6.17.0",
+    "babel-core": "^6.24.1",
     "babel-eslint": "^7.0.0",
     "babel-plugin-istanbul": "^3.0.0",
     "babel-plugin-transform-runtime": "^6.15.0",
